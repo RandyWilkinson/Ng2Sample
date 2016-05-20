@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "target": "es5"
+    },
+    "files": [
+        "./app.component.ts",
+        "./main.ts",
+        "../typings/index.d.ts"
+    ],
+    "compileOnSave": true
+}
