@@ -24,16 +24,11 @@ npm install
 ```
 ### Gulp Scripts
 
-These scripts are the basic scripts described in the Typescript Asp.net Core tutorial [here](http://www.typescriptlang.org/docs/handbook/asp-net-core.html).
-For completeness I modified the script to do a bulk move of the node_modules into the scripts/lib directory, this allows for you to work with 
-the Angular 2 documentation samples but some filtering of these to only include the modules used by your app would be wise. Also I added a seperate folder for scripts, 
-all of these files are moved in a post build event. In order the have these gulp tasks start subscribing to these build events you may need 
-to right click on the 'gulpfile.js' and open the Task Runner Explorer.
+These scripts are the basic scripts described in the Typescript Asp.net Core tutorial [here](http://www.typescriptlang.org/docs/handbook/asp-net-core.html). For completeness I modified the script to do a bulk move of the node_modules into the scripts/lib directory, this allows for you to work with the Angular 2 documentation samples but some filtering of these to only include the modules used by your app would be wise. Also I added a seperate folder for styles, all of these files are moved in a post build event. In order the have these gulp tasks start subscribing to these build events you may need to right click on the 'gulpfile.js' and open the Task Runner Explorer.
 
 ### Usage
 
-After installing the npm packages and verifying gulp tasks are attached, open the .sln file in Visual Studio 2015 with the latest version of the Typscript tools for Visual Studio (at the time of this writing
-it is version 1.8.6). Next just build the application and use the web command to launch kestrel and navigate to http://localhost:5000.
+After installing the npm packages and verifying gulp tasks are attached, open the .sln file in Visual Studio 2015 with the latest version of the Typscript tools for Visual Studio (at the time of this writing it is version 1.8.6). Next just build the application and use the web command to launch kestrel and navigate to http://localhost:5000.
 
 Enjoy!
 
