@@ -24,7 +24,7 @@ npm install
 ```
 ### Gulp Scripts
 
-These scripts are the basic scripts described in the Typescript Asp.net Core tutorial [here](http://www.typescriptlang.org/docs/handbook/asp-net-core.html). For completeness I modified the script to do a bulk move of the node_modules into the scripts/lib directory, this allows for you to work with the Angular 2 documentation samples but some filtering of these to only include the modules used by your app would be wise. Also I added a seperate folder for styles, all of these files are moved in a post build event. In order the have these gulp tasks start subscribing to these build events you may need to right click on the 'gulpfile.js' and open the Task Runner Explorer.
+These scripts are the basic scripts described in the Typescript Asp.net Core tutorial [here](http://www.typescriptlang.org/docs/handbook/asp-net-core.html). For completeness I modified the script to move most of the angular 2 node_modules into the scripts/lib directory, this allows for you to work with the Angular 2 documentation samples. Also I added a seperate folder for styles, all of these files are moved in a post build event. In order to have these gulp tasks start subscribing to these build events you may need to right click on the 'gulpfile.js' and open the Task Runner Explorer. I have also added a webserver task that will start a simple http server on port 8000 in the wwwroot directory with a browserlink websocket that causes the browser to refresh when there are changes. Simply start the webserver task them as you make changes and save run the default task to move the changes into the wwwroot directory which causes a refresh. This is a great method for doing rapid development and not having to wait for kestrel to start.
 
 ### Usage
 
