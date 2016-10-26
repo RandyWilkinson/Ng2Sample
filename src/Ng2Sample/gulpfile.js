@@ -16,7 +16,7 @@ var paths = {
     libs: ['node_modules/@angular*/**/*.js',
     'node_modules/rxjs*/**/*.js',
     'node_modules/angular2-in-memory-web-api*/**/*.js',
-    'node_modules/es6-shim*/**/*.js',
+    'node_modules/core-js*/**/*.js',
     'node_modules/zone.js*/**/*.js',
     'node_modules/reflect-metadata*/**/*.js',
     'node_modules/systemjs*/**/*.js',
