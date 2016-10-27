@@ -28,13 +28,13 @@ These scripts are the basic scripts described in the Typescript Asp.net Core tut
 
 ### Usage
 
-After installing the npm packages and verifying gulp tasks are attached, open the .sln file in Visual Studio 2015 with the latest version of the Typscript tools for Visual Studio (at the time of this writing it is version 1.8.6). Next just build the application and use the web command to launch kestrel and navigate to http://localhost:5000.
+After installing the npm packages and verifying gulp tasks are attached, open the .sln file in Visual Studio 2015 with the latest version of the Typscript tools for Visual Studio (at the time of this writing it is version 2.0.3). Next just build the application and use the web command to launch kestrel and navigate to http://localhost:5000.
 
 Enjoy!
 
 ### Dependencies
 * Visual Studio 2015 update 2
 * DNX SDK version 1.0.0-rc1-update1
-* Typescript for Visual Studio version 1.8.6
-* Node version 4.4.4
-* NPM version 3.9.3 (optional, but recommended)
+* Typescript for Visual Studio version 2.0.3
+* Node version 6.2.0
+* NPM version 4.0.0 (optional, but recommended)
