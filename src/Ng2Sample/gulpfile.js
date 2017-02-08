@@ -26,7 +26,7 @@ var paths = {
 };
 
 gulp.task('lib', function () {
-    gulp.src(paths.libs).pipe(gulp.dest('wwwroot/scripts/lib'))
+    gulp.src(paths.libs).pipe(gulp.dest('wwwroot/scripts/lib'));
 });
 
 gulp.task('clean', function () {
