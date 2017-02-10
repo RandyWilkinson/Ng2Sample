@@ -1,12 +1,23 @@
 {
   "dependencies": {
-    "Microsoft.TypeScript.Compiler": "2.1.5",
+    "Microsoft.NETCore.App": {
+      "version": "1.1.0",
+      "type": "platform"
+    },
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0",
+    "Microsoft.Extensions.Logging": "1.1.0",
     "Microsoft.Extensions.Logging.Console": "1.1.0",
-    "Microsoft.NETCore.App": "1.1.0"
+    "Microsoft.Extensions.Logging.Debug": "1.1.0",
+    "Chutzpah": {
+      "type": "build",
+      "version": "4.2.4"
+    }
   },
 
   "tools": {
@@ -43,10 +54,15 @@
     "include": [
       "wwwroot",
       "web.config"
+    ],
+    "exclude": [
+      "wwwroot/app/**/*.spec.*",
+      "wwwroot/chutzpah.json"
     ]
   },
 
   "scripts": {
+    "prepublish": "npm install",
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }

@@ -1,48 +1,41 @@
-﻿/// <binding AfterBuild='default' Clean='clean' BeforeBuild='tsconfig' />
-/*
-This file is the main entry point for defining Gulp tasks and using Gulp plugins.
-Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
-*/
-
+﻿
 var gulp = require('gulp'),
-del = require('del'),
 webserver = require('gulp-webserver'),
-watch = require('gulp-watch'),
-gulpTsConfig = require('gulp-tsconfig');
+merge = require('merge-stream'),
+rimraf = require('rimraf');
+
 
 var paths = {
-    app: ['app/**/*.js', 'app/**/*.ts', 'app/**/*.map', 'app/**/*.css', 'app/**/*.html'],
-    styles: ['styles/**/*', 'node_modules/bootstrap/dist/css/bootstrap.min.css'],
-    libs: ['node_modules/@angular*/**/*.js',
-    'node_modules/rxjs*/**/*.js',
-    'node_modules/angular2-in-memory-web-api*/**/*.js',
-    'node_modules/core-js*/**/*.js',
-    'node_modules/zone.js*/**/*.js',
-    'node_modules/reflect-metadata*/**/*.js',
-    'node_modules/systemjs*/**/*.js',
-    'node_modules/lodash/dist/lodash.min.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js'
-    ]
+    nodeModules: './node_modules/',
+    clientDeps: './wwwroot/lib/',
+    styles: ['styles/**/*', 'node_modules/bootstrap/dist/css/bootstrap.min.css']
 };
 
-gulp.task('lib', function () {
-    gulp.src(paths.libs).pipe(gulp.dest('wwwroot/scripts/lib'));
-});
+var clientLibraries = [
+    'core-js',
+    'zone.js',
+    'reflect-metadata',
+    'systemjs',
+    '@angular',
+    'rxjs',
+    'es6-shim'
+];
 
-gulp.task('clean', function () {
-    return del(['wwwroot/scripts/**/*', 'wwwroot/styles/**/*']);
-});
+gulp.task('copyClientDeps',
+    function () {
+        var mergeStream = merge();
+        for (var i = 0; i < clientLibraries.length; i++) {
+            mergeStream.add(gulp.src([paths.nodeModules + clientLibraries[i] + '/**/*.js'])
+                .pipe(gulp.dest(paths.clientDeps + clientLibraries[i])));
+        }
+        return mergeStream;
+    });
 
-gulp.task('default', ['lib'], function () {
-    gulp.src(paths.app).pipe(gulp.dest('wwwroot/scripts'));
-    gulp.src(paths.styles).pipe(gulp.dest('wwwroot/styles'));
-});
+gulp.task('cleanClientDeps',
+    function (cb) {
+        return rimraf(paths.clientDeps, cb);
+    });
 
-gulp.task('stream', function () {
-    return gulp.src(paths.app)
-        .pipe(watch(paths.app))
-        .pipe(gulp.dest('wwwroot/scripts'));
-});
 
 gulp.task('webserver', function () {
     gulp.src('wwwroot')
@@ -51,31 +44,4 @@ gulp.task('webserver', function () {
           fallback: 'index.html',
           open: true
       }));
-});
-
-gulp.task('tsconfig', function () {
-    var tsConfig = gulpTsConfig({
-        tsOrder: [
-            '**/app.module.ts',
-            '**/*.module.ts',
-            '**/*.ts'],
-        tsConfig: {
-            "compilerOptions": {
-                "noImplicitAny": false,
-                "noEmitOnError": true,
-                "sourceMap": true,
-                "experimentalDecorators": true,
-                "emitDecoratorMetadata": true,
-                "target": "es5"
-            },
-            "compileOnSave": true
-
-        }
-    });
-
-    return gulp.src(["app/**/*.ts", "typings/index.d.ts"])
-        .pipe(tsConfig())
-        .pipe(gulp.dest('.'));
-
-    // --> result is a tsconfig.json file. 
 });

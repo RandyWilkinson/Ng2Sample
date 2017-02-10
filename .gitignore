@@ -211,9 +211,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
-/src/Ng2Sample/app/*.js
-/src/Ng2Sample/app/*.js.map
+/src/Ng2Sample/wwwroot/app/*.js
+/src/Ng2Sample/wwwroot/app/*.js.map
+/src/Ng2Sample/wwwroot/lib
 
-/src/Ng2Sample/wwwroot/scripts
-/src/Ng2Sample/wwwroot/styles
-/src/Ng2Sample/tsconfig.json
