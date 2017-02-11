@@ -17,24 +17,49 @@ initial install needs to be done from the command line in the 'src\Ng2Sample' fo
 
 Note: The folder path length can become an issue with some of the nested modules, this issue has been addressed in
 the newer version of NPM. I would recommend using this [tool](https://github.com/felixrieseberg/npm-windows-upgrade) to
-upgrade to a version of NPM > 3.0.
+upgrade to a version of NPM > 3.0. I would also highly recommend this [npm task runner](https://github.com/madskristensen/NpmTaskRunner) extension.
 
 ```bash
 npm install
 ```
 ### Gulp Scripts
 
-These scripts are the basic scripts described in the Typescript Asp.net Core tutorial [here](http://www.typescriptlang.org/docs/handbook/asp-net-core.html). For completeness I modified the script to move most of the angular 2 node_modules into the scripts/lib directory, this allows for you to work with the Angular 2 documentation samples. Also I added a seperate folder for styles, all of these files are moved in a post build event. In order to have these gulp tasks start subscribing to these build events you may need to right click on the 'gulpfile.js' and open the Task Runner Explorer. I have also added a webserver task that will start a simple http server on port 8000 in the wwwroot directory with a browserlink websocket that causes the browser to refresh when there are changes. Simply start the webserver task them as you make changes and save run the default task to move the changes into the wwwroot directory which causes a refresh. This is a great method for doing rapid development and not having to wait for kestrel to start.
+These scripts move the neccesary angular 2 node_modules into the wwwroot/lib directory, this allows for you to work with the Angular 
+2 documentation samples. Also I added a seperate folder in wwwroot folder for the global styles, component specific styles belong next to the components based 
+on the angular 2 style guidelines. The node module dependencies are moved in a gulp task started by an npm post install event. You can right click on the 'gulpfile.js' 
+and open the Task Runner Explorer to see these tasks. I have also added a webserver gulp task that will start a simple http server on port 8000 in the wwwroot directory
+with a browserlink websocket that causes the browser to refresh when there are changes. Simply start the webserver task, then as you save changes in the wwwroot directory it
+causes a refresh. This is a great method for doing rapid development and not having to wait for kestrel to start.
 
 ### Usage
 
-After installing the npm packages and verifying gulp tasks are attached, open the .sln file in Visual Studio 2015 with the latest version of the Typscript tools for Visual Studio (at the time of this writing it is version 2.0.3). Next just build the application and use the web command to launch kestrel and navigate to http://localhost:5000.
+After installing the npm packages, open the .sln file in Visual Studio 2015 with the latest version of 
+the Typscript tools for Visual Studio (at the time of this writing it is version 2.0.3). 
+Next just build the application and use the Ng2Sample command to launch kestrel and navigate to http://localhost:5000. 
+
+Another option is to use the dotnet CLI from the command line in the 'src\Ng2Sample' folder to build and launch the application:
+```bash
+npm install
+npm run tsc
+dotnet restore
+dotnet build
+dotnet run
+```
+
+### TypeScript Unit Tests
+
+Getting this jasmine based angular 2 quickstart unit test working with chutzpah proved to be difficult and the final solution is based on 
+this fabulous [project](https://github.com/GeorgDangl/NetCoreHeroes). To run unit tests for Angular 2 components, get the
+[Chutzpah Test Adapter for Visual Studio](https://visualstudiogallery.msdn.microsoft.com/f8741f04-bae4-4900-81c7-7c9bfb9ed1fe).
+The Angular 2 tests should then be available in the Visual Studio Test Explorer after a rebuild.
 
 Enjoy!
 
 ### Dependencies
-* Visual Studio 2015 update 2
-* DNX SDK version 1.0.0-rc1-update1
+* Visual Studio 2015 update 3
+* [Chutzpah Test Adapter for Visual Studio](https://visualstudiogallery.msdn.microsoft.com/f8741f04-bae4-4900-81c7-7c9bfb9ed1fe)
+* [.NET Core 1.1.0 SDK Preview 2.1 build 3177](https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.1-preview2.1-download.md)
 * Typescript for Visual Studio version 2.0.3
-* Node version 6.2.0
+* Node version 6.9.5
 * NPM version 4.0.0 (optional, but recommended)
+* [NPM Task Runner Extension](https://github.com/madskristensen/NpmTaskRunner) (Optional, but recommende)
